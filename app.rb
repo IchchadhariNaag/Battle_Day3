@@ -17,6 +17,6 @@ end
 
 get '/named-cat' do
 	p params
-	@name = params[:called]
+	@name = params[:name]
 	erb(:index)
 end
