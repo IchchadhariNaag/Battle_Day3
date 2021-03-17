@@ -1,32 +1,18 @@
-require 'sinatra'
+require 'sinatra/base'
 
-set :session_secret, 'Kevin McCloud'
 
-get '/' do
-  'hello!'
-end
 
-get '/secret' do
-  'This is a secret club'
-end
+class Battle < Sinatra::Base
 
-get '/random-cat' do
-	@name = ["Amigo", "Misty", "Almond"].sample
-	erb(:index)
-end
+  set :session_secret, 'Kevin McCloud'
 
-get '/named-cat' do
-	p params
-	@name = params[:name]
-	erb(:index)
-end
+  get '/' do
+    erb(:index)
+  end
 
-get '/cat-form' do
-  erb(:cat_form)
-end
-
-post '/named-cat' do
-  p params
-  @name = params[:name]
-  erb(:index)
+  post '/names' do
+    @first_player_name = params[:first_name]
+    @second_player_name = params[:second_name]
+    erb(:play)
+  end
 end
